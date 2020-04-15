@@ -1,0 +1,27 @@
+---
+# tasks file for chrome
+
+- name: Add chrome apt key
+  apt_key:
+    url: https://dl-ssl.google.com/linux/linux_signing_key.pub 
+    state: present
+
+- name: Add the chrome repository
+  apt_repository:
+    repo: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
+    state: present
+
+#- name: Download chrome stable package
+#  get_url:
+#    url: "https://dl.google.com/linux/direct/{{ chrome_packges }}"
+#  register: chrome_package_download
+#  until: chrome_package_download is succeeded
+#  retries: 3
+
+- name: install chrome
+  package:
+    name: "{{ chrome_packages }}"
+    state: present
+  register: chrome_install_chrome
+  until: chrome_install_chrome is succeeded
+  retries: 3

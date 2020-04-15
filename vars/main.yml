@@ -1,0 +1,22 @@
+---
+# vars file for chrome
+
+_chrome_packages:
+  default:
+    - google-chrome-stable
+  Redhat:
+    - google-chrome-stable
+  Ubuntu:
+    - google-chrome-stable
+
+chrome_packages: "{{ _chrome_packages[ansible_os_family] | default(_chrome_packages['default']) }}"
+
+#_chrome_packages:
+#  default:
+#    - google-chrome-stable_current_amd64.deb
+#  Redhat:
+#    - google-chrome-stable_current_x86_64.rpm
+#  Ubuntu:
+#    - google-chrome-stable_current_amd64.deb
+#
+#chrome_packages: "{{ _chrome_packages[ansible_os_family] | default(_chrome_packages['default']) }}"

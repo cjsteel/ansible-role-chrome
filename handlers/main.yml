@@ -1,0 +1,8 @@
+---
+# handlers file for chrome
+- name: restart chrome
+  service:
+    name: "{{ chrome_service }}"
+    state: restarted
+  when:
+    - ansible_virtualization_type != "docker"
